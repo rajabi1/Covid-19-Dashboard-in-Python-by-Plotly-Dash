@@ -2,4 +2,4 @@
 
 <!-- View on youtube. https://www.youtube.com/watch?v=bDXypNBH1uw&t=159s -->
 
-![maxresdefault](https://user-images.githubusercontent.com/76989404/106139215-f9da0f80-618e-11eb-960e-a2f78a428e2a.jpg)
+![maxresdefault](https://github.com/rajabi1/Covid-19-Dashboard-in-Python-by-Plotly-Dash/blob/29f734a2b95220c9c19b8b18300ec83cbf9d1626/assets/Covid-19-Dashboard.JPG)
