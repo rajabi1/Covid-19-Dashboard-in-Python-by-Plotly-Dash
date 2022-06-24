@@ -51,7 +51,7 @@ app = dash.Dash(__name__, meta_tags=[{"name": "viewport", "content": "width=devi
 app.layout = html.Div([
     html.Div([
         html.Div([
-            html.Img(src=app.get_asset_url('corona-logo-1.jpg'),
+            html.Img(src=app.get_asset_url('GUMS_logo.png'),
                      id='corona-image',
                      style={
                          "height": "60px",
@@ -64,13 +64,13 @@ app.layout = html.Div([
         ),
         html.Div([
             html.Div([
-                html.H3("Covid - 19", style={"margin-bottom": "0px", 'color': 'white'}),
-                html.H5("Track Covid - 19 Cases", style={"margin-top": "0px", 'color': 'white'}),
+                html.H3("کووید - 19", style={"margin-bottom": "0px", 'color': 'white'}),
+                html.H5("ردیابی موارد کووید - 19", style={"margin-top": "0px", 'color': 'white'}),
             ])
         ], className="one-half column", id="title"),
 
         html.Div([
-            html.H6('Last Updated: ' + str(covid_data_1['date'].iloc[-1].strftime("%B %d, %Y")) + '  00:01 (UTC)',
+            html.H6(str(covid_data_1['date'].iloc[-1].strftime("%B %d, %Y")) + '  00:01 (UTC)'+' : آخرین بروز رسانی',
                     style={'color': 'orange'}),
 
         ], className="one-third column", id='title1'),
@@ -79,7 +79,7 @@ app.layout = html.Div([
 
     html.Div([
         html.Div([
-            html.H6(children='Global Cases',
+            html.H6(children='موارد جهانی',
                     style={
                         'textAlign': 'center',
                         'color': 'white'}
@@ -92,7 +92,7 @@ app.layout = html.Div([
                        'fontSize': 40}
                    ),
 
-            html.P('new:  ' + f"{covid_data_1['confirmed'].iloc[-1] - covid_data_1['confirmed'].iloc[-2]:,.0f} "
+            html.P('جدید:  ' + f"{covid_data_1['confirmed'].iloc[-1] - covid_data_1['confirmed'].iloc[-2]:,.0f} "
                    + ' (' + str(round(((covid_data_1['confirmed'].iloc[-1] - covid_data_1['confirmed'].iloc[-2]) /
                                        covid_data_1['confirmed'].iloc[-1]) * 100, 2)) + '%)',
                    style={
@@ -104,7 +104,7 @@ app.layout = html.Div([
         ),
 
         html.Div([
-            html.H6(children='Global Deaths',
+            html.H6(children='مرگ و میر جهانی',
                     style={
                         'textAlign': 'center',
                         'color': 'white'}
@@ -117,7 +117,7 @@ app.layout = html.Div([
                        'fontSize': 40}
                    ),
 
-            html.P('new:  ' + f"{covid_data_1['death'].iloc[-1] - covid_data_1['death'].iloc[-2]:,.0f} "
+            html.P('جدید:  ' + f"{covid_data_1['death'].iloc[-1] - covid_data_1['death'].iloc[-2]:,.0f} "
                    + ' (' + str(round(((covid_data_1['death'].iloc[-1] - covid_data_1['death'].iloc[-2]) /
                                        covid_data_1['death'].iloc[-1]) * 100, 2)) + '%)',
                    style={
@@ -129,7 +129,7 @@ app.layout = html.Div([
         ),
 
         html.Div([
-            html.H6(children='Global Recovered',
+            html.H6(children='جهانی بازیابی شده',
                     style={
                         'textAlign': 'center',
                         'color': 'white'}
@@ -142,7 +142,7 @@ app.layout = html.Div([
                        'fontSize': 40}
                    ),
 
-            html.P('new:  ' + f"{covid_data_1['recovered'].iloc[-1] - covid_data_1['recovered'].iloc[-2]:,.0f} "
+            html.P('جدید:  ' + f"{covid_data_1['recovered'].iloc[-1] - covid_data_1['recovered'].iloc[-2]:,.0f} "
                    + ' (' + str(round(((covid_data_1['recovered'].iloc[-1] - covid_data_1['recovered'].iloc[-2]) /
                                        covid_data_1['recovered'].iloc[-1]) * 100, 2)) + '%)',
                    style={
@@ -154,7 +154,7 @@ app.layout = html.Div([
         ),
 
         html.Div([
-            html.H6(children='Global Active',
+            html.H6(children='فعال جهانی',
                     style={
                         'textAlign': 'center',
                         'color': 'white'}
@@ -167,7 +167,7 @@ app.layout = html.Div([
                        'fontSize': 40}
                    ),
 
-            html.P('new:  ' + f"{covid_data_1['active'].iloc[-1] - covid_data_1['active'].iloc[-2]:,.0f} "
+            html.P('جدید:  ' + f"{covid_data_1['active'].iloc[-1] - covid_data_1['active'].iloc[-2]:,.0f} "
                    + ' (' + str(round(((covid_data_1['active'].iloc[-1] - covid_data_1['active'].iloc[-2]) /
                                        covid_data_1['active'].iloc[-1]) * 100, 2)) + '%)',
                    style={
@@ -182,17 +182,17 @@ app.layout = html.Div([
     html.Div([
         html.Div([
 
-                    html.P('Select Country:', className='fix_label',  style={'color': 'white'}),
+                    html.P('انتخاب کشور:', className='fix_label',  style={'color': 'white'}),
 
                      dcc.Dropdown(id='w_countries',
                                   multi=False,
                                   clearable=True,
-                                  value='US',
+                                  value='Iran',
                                   placeholder='Select Countries',
                                   options=[{'label': c, 'value': c}
                                            for c in (covid_data['Country/Region'].unique())], className='dcc_compon'),
 
-                     html.P('New Cases : ' + '  ' + ' ' + str(covid_data_2['date'].iloc[-1].strftime("%B %d, %Y")) + '  ', className='fix_label',  style={'color': 'white', 'text-align': 'center'}),
+                     html.P( '  ' + ' ' + str(covid_data_2['date'].iloc[-1].strftime("%B %d, %Y")) + '  ' +': موارد جدید ', className='fix_label',  style={'color': 'white', 'text-align': 'center'}),
                      dcc.Graph(id='confirmed', config={'displayModeBar': False}, className='dcc_compon',
                      style={'margin-top': '20px'},
                      ),
@@ -255,7 +255,7 @@ def update_confirmed(w_countries):
                                },
                     domain={'y': [0, 1], 'x': [0, 1]})],
             'layout': go.Layout(
-                title={'text': 'New Confirmed',
+                title={'text': 'تایید شده های جدید',
                        'y': 1,
                        'x': 0.5,
                        'xanchor': 'center',
@@ -292,7 +292,7 @@ def update_confirmed(w_countries):
                                },
                     domain={'y': [0, 1], 'x': [0, 1]})],
             'layout': go.Layout(
-                title={'text': 'New Death',
+                title={'text': 'فوتی جدید',
                        'y': 1,
                        'x': 0.5,
                        'xanchor': 'center',
@@ -329,7 +329,7 @@ def update_confirmed(w_countries):
                                },
                     domain={'y': [0, 1], 'x': [0, 1]})],
             'layout': go.Layout(
-                title={'text': 'New Recovered',
+                title={'text': 'بهبود یافته جدید',
                        'y': 1,
                        'x': 0.5,
                        'xanchor': 'center',
@@ -366,7 +366,7 @@ def update_confirmed(w_countries):
                                },
                     domain={'y': [0, 1], 'x': [0, 1]})],
             'layout': go.Layout(
-                title={'text': 'New Active',
+                title={'text': 'فعال جدید',
                        'y': 1,
                        'x': 0.5,
                        'xanchor': 'center',
@@ -392,7 +392,7 @@ def update_graph(w_countries):
     colors = ['orange', '#dd1e35', 'green', '#e55467']
 
     return {
-        'data': [go.Pie(labels=['Confirmed', 'Death', 'Recovered', 'Active'],
+        'data': [go.Pie(labels=['تایید شده', 'فوتی', 'بهبود یافته', 'فعال'],
                         values=[new_confirmed, new_death, new_recovered, new_active],
                         marker=dict(colors=colors),
                         hoverinfo='label+value+percent',
@@ -412,7 +412,7 @@ def update_graph(w_countries):
             paper_bgcolor='#1f2c56',
             hovermode='closest',
             title={
-                'text': 'Total Cases : ' + (w_countries),
+                'text': (w_countries) +': کلیه موارد ' ,
 
 
                 'y': 0.93,
@@ -450,7 +450,7 @@ def update_graph(w_countries):
         'data': [go.Bar(x=covid_data_3[covid_data_3['Country/Region'] == w_countries]['date'].tail(30),
                         y=covid_data_3[covid_data_3['Country/Region'] == w_countries]['daily confirmed'].tail(30),
 
-                        name='Daily confirmed',
+                        name='تایید شده روزانه',
                         marker=dict(
                             color='orange'),
                         hoverinfo='text',
@@ -464,13 +464,13 @@ def update_graph(w_countries):
                  go.Scatter(x=covid_data_3[covid_data_3['Country/Region'] == w_countries]['date'].tail(30),
                             y=covid_data_3[covid_data_3['Country/Region'] == w_countries]['Rolling Ave.'].tail(30),
                             mode='lines',
-                            name='Rolling average of the last seven days - daily confirmed cases',
+                            name='میانگین چرخشی هفت روز گذشته - موارد تایید شده روزانه',
                             line=dict(width=3, color='#FF00FF'),
                             # marker=dict(
                             #     color='green'),
                             hoverinfo='text',
                             hovertext=
-                            '<b>Date</b>: ' + covid_data_3[covid_data_3['Country/Region'] == w_countries]['date'].tail(30).astype(str) + '<br>' +
+                            '<b>تاریخ</b>: ' + covid_data_3[covid_data_3['Country/Region'] == w_countries]['date'].tail(30).astype(str) + '<br>' +
                             '<b>Rolling Ave.(last 7 days)</b>: ' + [f'{x:,.0f}' for x in covid_data_3[covid_data_3['Country/Region'] == w_countries]['Rolling Ave.'].tail(30)] + '<br>'
                             )],
 
@@ -479,7 +479,7 @@ def update_graph(w_countries):
              plot_bgcolor='#1f2c56',
              paper_bgcolor='#1f2c56',
              title={
-                'text': 'Last 30 Days Confirmed Cases : ' + (w_countries),
+                'text': (w_countries) + ' :موارد تایید شده 30 روز گذشته' ,
                 'y': 0.93,
                 'x': 0.5,
                 'xanchor': 'center',
@@ -490,7 +490,7 @@ def update_graph(w_countries):
 
              hovermode='x',
              margin = dict(r = 0),
-             xaxis=dict(title='<b>Date</b>',
+             xaxis=dict(title='<b>تاریخ</b>',
                         color='white',
                         showline=True,
                         showgrid=True,
@@ -506,7 +506,7 @@ def update_graph(w_countries):
 
                 ),
 
-             yaxis=dict(title='<b>Daily confirmed Cases</b>',
+             yaxis=dict(title='<b>موارد تایید شده روزانه</b>',
                         color='white',
                         showline=True,
                         showgrid=True,
